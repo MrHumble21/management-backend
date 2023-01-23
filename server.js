@@ -14,7 +14,7 @@ dotenv.config();
 app.use(cors());
 //  routes
 
-var whitelist = ['http://example1.com', 'http://example2.com']
+var whitelist = ['https://front-i.vercel.app/', 'https://front-i.vercel.app']
 var corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1) {
