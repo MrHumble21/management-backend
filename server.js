@@ -5,11 +5,12 @@ import dotenv from "dotenv";
 import jwt from "jsonwebtoken";
 import bodyParser from "body-parser";
 // middile wares
+import { cors } from "cors";
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 dotenv.config();
-
+app.use(cors());
 //  routes
 // test route
 app.get("/", function (req, res) {
