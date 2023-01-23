@@ -12,9 +12,9 @@ dotenv.config();
 
 //  routes
 // test route
-app.get("/test", function (req, res) {
+app.get("/", function (req, res) {
   console.log("request came");
-  res.json({ connection: "server is running" });
+  res.json({ connection: "Assalamu Alaykum My dear Brother or Sister\nWelcome to Users management system" });
 });
 
 // create user route
@@ -37,6 +37,8 @@ app.post("/create_user", async function (req, res) {
     console.log(error);
   }
 });
+
+
 
 // login user
 app.post("/login", async (req, res) => {
