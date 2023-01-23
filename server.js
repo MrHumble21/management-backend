@@ -26,13 +26,13 @@ var corsOptions = {
 }
 
 // test route
-app.get("/", cors(corsOptions),function (req, res) {
+app.get("/", function (req, res) {
   console.log("request came");
   res.json({ connection: "Assalamu Alaykum My dear Brother or Sister Welcome to Users management system" });
 });
 
 // create user route
-app.post("/create_user", cors(corsOptions),async function (req, res) {
+app.post("/create_user", async function (req, res) {
   try {
     console.log('kirdi')
     let jwtSecretKey = process.env.JWT_SECRET_KEY;
@@ -56,7 +56,7 @@ app.post("/create_user", cors(corsOptions),async function (req, res) {
 
 
 // login user
-app.post("/login",cors(corsOptions), async (req, res) => {
+app.post("/login", async (req, res) => {
   // console.log(req.body);
  try {
   let login = await CreateUser.findOne({
@@ -80,7 +80,7 @@ app.post("/login",cors(corsOptions), async (req, res) => {
 });
 
 // delete user
-app.post("/delete_user",cors(corsOptions), async function (req, res) {
+app.post("/delete_user", async function (req, res) {
   res.json({ response: "user has been deleted successfully" });
   try {
     CreateUser.destroy({
@@ -97,7 +97,7 @@ app.post("/delete_user",cors(corsOptions), async function (req, res) {
 });
 
 // delete selected users
-app.post("/delete_selected_users",cors(corsOptions), async function (req, res) {
+app.post("/delete_selected_users", async function (req, res) {
   res.json({ response: "selected users has been deleted successfully" });
   try {
     CreateUser.destroy({
@@ -114,7 +114,7 @@ app.post("/delete_selected_users",cors(corsOptions), async function (req, res) {
 });
 
 // delete all users
-app.post("/delete_all",cors(corsOptions), async function (req, res) {
+app.post("/delete_all", async function (req, res) {
   res.json({ response: "all users have been deleted successfully" });
   try {
     CreateUser.destroy({ where: {}, truncate: true });
@@ -125,7 +125,7 @@ app.post("/delete_all",cors(corsOptions), async function (req, res) {
 });
 
 // block user
-app.post("/block_user",cors(corsOptions), async function (req, res) {
+app.post("/block_user", async function (req, res) {
   res.json({ response: "user has been blocked successfully" });
   const user = await CreateUser.findOne({ where: { id: req.body.id } });
   // Change everyone without a last name to "Doe"
@@ -141,7 +141,7 @@ app.post("/block_user",cors(corsOptions), async function (req, res) {
 });
 
 // fetch all users
-app.get("/all_users",cors(corsOptions), async function (req, res) {
+app.get("/all_users", async function (req, res) {
   const users = await CreateUser.findAll();
   res.json(JSON.stringify(users, null, 2));
 });
