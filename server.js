@@ -5,7 +5,7 @@ import dotenv from "dotenv";
 import jwt from "jsonwebtoken";
 import bodyParser from "body-parser";
 // middile wares
-import { cors } from "cors";
+import  cors  from "cors";
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
