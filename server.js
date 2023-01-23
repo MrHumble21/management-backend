@@ -34,6 +34,7 @@ app.get("/", cors(corsOptions),function (req, res) {
 // create user route
 app.post("/create_user", cors(corsOptions),async function (req, res) {
   try {
+    console.log('kirdi')
     let jwtSecretKey = process.env.JWT_SECRET_KEY;
     let data = {
       time: Date(),
