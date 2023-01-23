@@ -14,7 +14,7 @@ dotenv.config();
 // test route
 app.get("/", function (req, res) {
   console.log("request came");
-  res.json({ connection: "Assalamu Alaykum My dear Brother or Sister\nWelcome to Users management system" });
+  res.json({ connection: "Assalamu Alaykum My dear Brother or Sister Welcome to Users management system" });
 });
 
 // create user route
