@@ -19,7 +19,7 @@ app.get("/", function (req, res) {
   console.log("request came");
   res.json({
     connection:
-      "Assalamu Alaykum My dear Brother or Sister Welcome to Users management system",
+      "Assalamu Alaykum My dear Brother or Sister Welcome to Users management system 🙂",
   });
 });
 
