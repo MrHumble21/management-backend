@@ -5,36 +5,28 @@ import dotenv from "dotenv";
 import jwt from "jsonwebtoken";
 import bodyParser from "body-parser";
 // middile wares
-import  cors  from "cors";
+import cors from "cors";
+app.use(cors());
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 dotenv.config();
 
-app.use(cors());
 //  routes
-
-var whitelist = ['https://front-i.vercel.app/', 'https://front-i.vercel.app']
-var corsOptions = {
-  origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true)
-    } else {
-      callback(new Error('Not allowed by CORS'))
-    }
-  }
-}
 
 // test route
 app.get("/", function (req, res) {
   console.log("request came");
-  res.json({ connection: "Assalamu Alaykum My dear Brother or Sister Welcome to Users management system" });
+  res.json({
+    connection:
+      "Assalamu Alaykum My dear Brother or Sister Welcome to Users management system",
+  });
 });
 
 // create user route
 app.post("/create_user", async function (req, res) {
   try {
-    console.log('kirdi')
+    console.log("kirdi");
     let jwtSecretKey = process.env.JWT_SECRET_KEY;
     let data = {
       time: Date(),
@@ -53,30 +45,28 @@ app.post("/create_user", async function (req, res) {
   }
 });
 
-
-
 // login user
 app.post("/login", async (req, res) => {
   // console.log(req.body);
- try {
-  let login = await CreateUser.findOne({
-    where: { email: req.body.values.email },
-  });
-  if (
-    login.dataValues.email === req.body.values.email &&
-    login.dataValues.password === req.body.values.password
-  ) {
-    if (login.dataValues.status === false) {
-      res.sendStatus(200);
-    } else if (login.dataValues.status === true) {
-      res.sendStatus(401)
+  try {
+    let login = await CreateUser.findOne({
+      where: { email: req.body.values.email },
+    });
+    if (
+      login.dataValues.email === req.body.values.email &&
+      login.dataValues.password === req.body.values.password
+    ) {
+      if (login.dataValues.status === false) {
+        res.sendStatus(200);
+      } else if (login.dataValues.status === true) {
+        res.sendStatus(401);
+      }
+    } else {
+      res.sendStatus(404);
     }
-  } else {
-    res.sendStatus(404);
+  } catch (error) {
+    res.send(400);
   }
- } catch (error) {
-  res.send(400)
- }
 });
 
 // delete user
