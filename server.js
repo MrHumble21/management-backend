@@ -5,9 +5,10 @@ import dotenv from "dotenv";
 import jwt from "jsonwebtoken";
 import bodyParser from "body-parser";
 // middile wares
+const app = express();
+
 import cors from "cors";
 app.use(cors());
-const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 dotenv.config();
